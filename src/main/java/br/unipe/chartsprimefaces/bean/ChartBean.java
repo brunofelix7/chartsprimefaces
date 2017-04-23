@@ -48,6 +48,7 @@ public class ChartBean {
         for (User user : users) {
             pieModel.set(user.getNome(), user.getId());
         }
+        
         pieModel.setTitle("Usuários");
         pieModel.setLegendPosition("e");
         pieModel.setFill(false);

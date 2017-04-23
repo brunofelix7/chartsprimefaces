@@ -1,75 +1,129 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:c="http://java.sun.com/jsp/jstl/core">
-	
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
 <h:head>
 	<title>Charts</title>
-	<style>
-.paypal-button button.large {
-	min-width: 150px;
-}
-
-.paypal-label {
-	margin-left: 30px;
-}
-
-.paypal-input {
-	margin: 0 20px !important;
-	width: 100px !important;
-	height: 25px !important;
-	border-radius: 5px !important;
-	text-align: center !important;
-}
-
-.paypal-button {
-	min-height: 40px;
-}
-
-.textPay {
-	text-align: center;
-	margin: 10px 50px;
-	font-size: 13px;
-	display: block;
-}
-#usd-button form ,
-#brl-button form {
-	margin: 0;
-}
-
-#usd-button img,
-#brl-button img {
-	margin: 20px auto 0 auto;
-	display: block;
-}
-
-</style></h:head>
-<h:body>
-	<h:form>
-		<h1>Charts - Gráficos Primefaces</h1>
-		<h:panelGrid columns="2">
-			<h:outputLabel for="name" value="Your Name" />
-			<h:inputText value="#{helloBean.name}" binding="#{input1}" />
-			
-			<h:commandButton value="Click me!" action="#{helloBean.action(input1.value)}" />
-			<h:panelGroup/>
-			
-			<h:outputText value="#{helloBean.label}" />
-		</h:panelGrid>
-	</h:form>
+	<!-- Bootstrap core CSS -->
+	<link rel="stylesheet" type="text/css" href="resources/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="resources/dist/css/AdminLTE.min.css" />
+	<link rel="stylesheet" type="text/css" href="resources/dist/css/skins/skin-blue.min.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"/>
+</h:head>
+<h:body class="hold-transition skin-blue sidebar-mini">
 	
-	<p:chart type="bar" model="#{chartView.barModel}" style="height:300px"/>
-	
-    <h:form>
-        <p:commandButton value="Gerar Grráfico" actionListener="#{chartView.list()}" update="panel"/>
+	 <div class="wrapper">
 
-        <h:panelGroup id="panel" layout="block" >
-            <p:chart type="pie" model="#{chartView.pieModel}" style="width:50%; height:100%" rendered="#{chartView.pieModel != null}"/>
-        </h:panelGroup>
-    </h:form>
-    
+      <!-- Main Header -->
+      <header class="main-header">
+
+        <!-- Logo -->
+        <a href="#" class="logo">
+          <span class="logo-lg"><b>Primefaces Charts</b></span>
+        </a>
+
+        <!-- Header Navbar -->
+        <nav class="navbar navbar-static-top" role="navigation">
+          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+          </a>
+          <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+              <!-- User Account Menu -->
+              <li class="dropdown user user-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                   <h:graphicImage library="img" name="avatar5.png" class="user-image" alt="User Image"/>
+                  <span class="hidden-xs">Bruno/Emerson</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="user-header">
+                    <h:graphicImage library="img" name="avatar5.png" class="img-circle" alt="User Image"/>
+                    <p>Bruno/Emerson - Web Developers<small>Aplicações Corporativas na Web - SPI P5</small>
+                    </p>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <!-- Left side column. contains the logo and sidebar -->
+      <aside class="main-sidebar">
+
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+
+          <!-- Sidebar user panel (optional) -->
+          <div class="user-panel">
+            <div class="pull-left image">
+              <h:graphicImage library="img" name="avatar5.png" class="img-circle" alt="User Image"/>
+            </div>
+            <div class="pull-left info">
+              <p>Bruno/Emerson</p>
+              <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
+          </div>
+
+          <!-- Sidebar Menu -->
+          <ul class="sidebar-menu">
+            <li class="header">Menu - Relatórios</li>
+            <!-- Optionally, you can add icons to the links -->
+            <li class="active"><a href="#"><i class="fa fa-bar-chart"></i> <span>Gráfico 1</span></a></li>
+            <li><a href="#"><i class="fa fa-bar-chart"></i> <span>Gráfico 2</span></a></li>
+            <li><a href="#"><i class="fa fa-bar-chart"></i> <span>Gráfico 3</span></a></li>
+            <li><a href="#"><i class="fa fa-bar-chart"></i> <span>Gráfico 4</span></a></li>
+            <li><a href="#"><i class="fa fa-bar-chart"></i> <span>Gráfico 5</span></a></li>
+            <li><a href="#"><i class="fa fa-bar-chart"></i> <span>Gráfico 6</span></a></li>
+          </ul>
+        </section>
+      </aside>
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <section class="content-header">
+          <h1>Gráfico 1 <small>Informe a quantidade de...</small>
+          </h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+          <!-- Conteúdo Aqui -->
+          <h:form>
+			<h:panelGrid columns="2">
+				<h:outputLabel for="name" value="Your Name" />
+				<h:inputText value="#{helloBean.name}" binding="#{input1}" />
+				<h:commandButton value="Click me!" action="#{helloBean.action(input1.value)}" />
+				<h:panelGroup/>
+				<h:outputText value="#{helloBean.label}" />
+			</h:panelGrid>
+			</h:form>
+			
+			<p:chart type="bar" model="#{chartView.barModel}" style="height:300px"/>
+			
+			<h:form>
+			    <p:commandButton value="Gerar Grráfico" actionListener="#{chartView.list()}" update="panel"/>
+			    <h:panelGroup id="panel" layout="block" >
+			        <p:chart type="pie" model="#{chartView.pieModel}" style="width:50%; height:100%" rendered="#{chartView.pieModel != null}"/>
+			    </h:panelGroup>
+			</h:form>
+
+        </section>
+      </div>
+
+      <!-- Main Footer -->
+      <footer class="main-footer">
+        <strong>Copyright 2017 - <a href="http://www.unipe.br">UNIPÊ</a>.</strong> Aplicações Corporativas na Web - SPI P5.
+      </footer>
+
+    </div>
+
+    <!-- JavaScript - Bootstrap -->
+	<script type="text/javascript" src="resources/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="resources/dist/js/app.min.js"></script>
 </h:body>
 </html>

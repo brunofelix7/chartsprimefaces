@@ -34,7 +34,7 @@
 		<version>1.2.16</version>
 	</dependency>
 	
-	<!-- JSL -->
+	<!-- JSTL -->
 	<dependency>
 	    <groupId>javax.servlet</groupId>
 	    <artifactId>jstl</artifactId>
