@@ -14,7 +14,7 @@ import br.unipe.chartsprimefaces.model.UserQuerySQL;
 
 public class UserService implements UserDAO{
 
-	public Connection conn = ConnectionFactory.getConnection();
+	private Connection conn = ConnectionFactory.getConnection();
 
 	@Override
 	public void cadastrar(User usuario){
@@ -112,6 +112,7 @@ public class UserService implements UserDAO{
 				usuario.setNome(result.getString("nome"));
 				usuarios.add(usuario);
 			}
+			
 		}catch(SQLException e){
 			e.printStackTrace();
 		}

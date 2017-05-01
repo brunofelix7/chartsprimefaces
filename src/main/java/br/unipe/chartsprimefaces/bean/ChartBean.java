@@ -8,52 +8,46 @@ import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.BarChartModel;
 import org.primefaces.model.chart.ChartSeries;
+import org.primefaces.model.chart.LineChartModel;
 import org.primefaces.model.chart.PieChartModel;
-import br.unipe.chartsprimefaces.entity.User;
-import br.unipe.chartsprimefaces.service.UserService;
+import br.unipe.chartsprimefaces.entity.MyData;
+import br.unipe.chartsprimefaces.service.MyDataService;
 
 @ManagedBean(name = "chartView")
 public class ChartBean {
 
 	private PieChartModel pieModel;
 	private BarChartModel barModel;
+	private LineChartModel lineChartModel;
 	private ChartSeries boys;
 	private ChartSeries girls;
 	private Axis xAxis;
 	private Axis yAxis;	
-	private List<User> users;
-	private UserService userService;
+	private List<MyData> mList;
+	private MyDataService myDataService;
 	
     @PostConstruct
     public void init() {
         createBarModels();
     }
     
+    //	TESTES
     public void list(){
-    	try{
-    		users = new ArrayList<>();
-    		userService = new UserService();
-			users = userService.buscarTodos();
-			createChartModel(users);
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally {
-			
-		}
+    	mList = new ArrayList<>();
+    	myDataService = new MyDataService();
+    	mList = myDataService.listFaturamentoJP();
+    	createChartModel(mList);
     }
-    
-    private void createChartModel(List<User> users){
+    private void createChartModel(List<MyData> data){
     	pieModel = new PieChartModel();
-    	
-        for (User user : users) {
-            pieModel.set(user.getNome(), user.getId());
-        }
-        
-        pieModel.setTitle("Usuários");
+    	for(MyData m : data){
+    		pieModel.set(m.getData(), m.getValor());
+    	}
+    	pieModel.setTitle("Faturamento");
         pieModel.setLegendPosition("e");
         pieModel.setFill(false);
         pieModel.setShowDataLabels(true);
-        pieModel.setDiameter(150);
+        pieModel.setDiameter(300);
     }
     
     private BarChartModel initBarModel() {
@@ -115,5 +109,15 @@ public class ChartBean {
     public void setPieModel(PieChartModel pieModel) {
 		this.pieModel = pieModel;
 	}
+
+	public LineChartModel getLineChartModel() {
+		return lineChartModel;
+	}
+
+	public void setLineChartModel(LineChartModel lineChartModel) {
+		this.lineChartModel = lineChartModel;
+	}
+    
+    
     
 }
