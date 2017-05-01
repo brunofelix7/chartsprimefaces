@@ -8,6 +8,7 @@
 <h:head>
 	<title>Charts</title>
 	<!-- Bootstrap core CSS -->
+	<link rel="stylesheet" type="text/css" href="resources/dist/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="resources/bootstrap/css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="resources/dist/css/AdminLTE.min.css" />
 	<link rel="stylesheet" type="text/css" href="resources/dist/css/skins/skin-blue.min.css" />
@@ -85,7 +86,7 @@
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <section class="content-header">
-          <h1>Gráfico 1 <small>Informe a quantidade de...</small>
+          <h1>Total de Faturamento - 2012<br/><small>Informe o período desejado</small>
           </h1>
         </section>
 
@@ -93,22 +94,25 @@
         <section class="content">
 
           <!-- Conteúdo Aqui -->
-          <h:form>
-			<h:panelGrid columns="2">
-				<h:outputLabel for="name" value="Your Name" />
-				<h:inputText value="#{helloBean.name}" binding="#{input1}" />
-				<h:commandButton value="Click me!" action="#{helloBean.action(input1.value)}" />
-				<h:panelGroup/>
-				<h:outputText value="#{helloBean.label}" />
-			</h:panelGrid>
-			</h:form>
-			
-			<p:chart type="bar" model="#{chartView.barModel}" style="height:300px"/>
+			<!-- <p:chart type="bar" model="#{chartView.barModel}" style="height:300px"/> -->
+			<p:tooltip />
+				<h:form>
+				    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+				</h:form>
+			<p:separator />
 			
 			<h:form>
-			    <p:commandButton value="Gerar Grráfico" actionListener="#{chartView.list()}" update="panel"/>
+				<p:message for="d1" display="d1" />
+				<p:message for="d2" display="d2" />
+				<p:inputMask id="d1" required="true" value="#{chartView.date}" mask="99/99/9999" />
+				<p:inputMask id="d2" required="true" value="#{chartView.date2}" mask="99/99/9999" style="margin-left:5px;" />
+			    <p:commandButton styleClass="regCommandButton" style="margin-left:5px;" value="Gerar Gráfico" actionListener="#{chartView.list()}" action="#{chartView.getValueDate1()}" update="panel">
+			    	<f:actionListener action="#{chartView.getValueDate2()}" />
+			    </p:commandButton>
+			    
 			    <h:panelGroup id="panel" layout="block" >
-			        <p:chart type="pie" model="#{chartView.pieModel}" style="width:50%; height:100%" rendered="#{chartView.pieModel != null}"/>
+			    	<br/>
+			        <p:chart type="pie" model="#{chartView.pieModel}" style="width:100%; height:100%" rendered="#{chartView.pieModel != null}"/>
 			    </h:panelGroup>
 			</h:form>
 

@@ -11,6 +11,7 @@ public class UserQuerySQL {
 	public static final String QUERY_TEST		= "SELECT NM_CIDADE, DT_EMISSAO, SUM(VL_ITEM) AS VALOR "
 													+ " FROM dados "
 													+ " WHERE NM_CIDADE IN ('JOAO PESSOA') "
+													+ " AND DT_EMISSAO BETWEEN ? AND ?"
 													+ " group by NM_CIDADE, DT_EMISSAO "
 													+ " ORDER BY DT_EMISSAO";
 	

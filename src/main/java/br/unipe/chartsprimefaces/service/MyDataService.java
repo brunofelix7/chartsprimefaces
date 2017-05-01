@@ -19,11 +19,13 @@ public class MyDataService implements MyDataDAO{
 	private Connection conn = ConnectionFactory.getConnection();
 
 	@Override
-	public List<MyData> listFaturamentoJP(){
+	public List<MyData> listFaturamentoJP(String date1, String date2){
 		List<MyData> mList = new ArrayList<>();
 		
 		try{
 			statement = conn.prepareStatement(UserQuerySQL.QUERY_TEST);
+			statement.setString(1, date1);
+			statement.setString(2, date2);
 			result = statement.executeQuery();
 			
 			while(result.next()){

@@ -9,6 +9,6 @@ import br.unipe.chartsprimefaces.entity.MyData;
  */
 public interface MyDataDAO {
 
-	List<MyData> listFaturamentoJP();
+	List<MyData> listFaturamentoJP(String date1, String date2);
 	
 }

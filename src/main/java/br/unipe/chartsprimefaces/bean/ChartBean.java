@@ -1,21 +1,31 @@
 package br.unipe.chartsprimefaces.bean;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+
 import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.BarChartModel;
 import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.LineChartModel;
 import org.primefaces.model.chart.PieChartModel;
+
 import br.unipe.chartsprimefaces.entity.MyData;
 import br.unipe.chartsprimefaces.service.MyDataService;
 
 @ManagedBean(name = "chartView")
 public class ChartBean {
 
+	private String date;
+	private String date2;
+	private String label; 
 	private PieChartModel pieModel;
 	private BarChartModel barModel;
 	private LineChartModel lineChartModel;
@@ -31,23 +41,41 @@ public class ChartBean {
         createBarModels();
     }
     
-    //	TESTES
+    public void error() {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro!", "Preencha todos os campos"));
+    }
+    
+    public String getValueDate1(){
+        System.out.println("Valor digitado: " + date);
+        return date;
+    }
+    
+    public String getValueDate2(){
+        System.out.println("Valor digitado: " + date2);
+        return date2;
+    }
+    
     public void list(){
     	mList = new ArrayList<>();
     	myDataService = new MyDataService();
-    	mList = myDataService.listFaturamentoJP();
+    	mList = myDataService.listFaturamentoJP(getValueDate1(), getValueDate2());
     	createChartModel(mList);
     }
+    
     private void createChartModel(List<MyData> data){
     	pieModel = new PieChartModel();
+    	Locale ptBr = new Locale("pt", "BR");
+    	
     	for(MyData m : data){
+    		String valorReal = NumberFormat.getCurrencyInstance(ptBr).format(m.getValor());
+    		System.out.println(valorReal + "\n");
     		pieModel.set(m.getData(), m.getValor());
     	}
-    	pieModel.setTitle("Faturamento");
+    	
+    	pieModel.setTitle("Total de Faturamento em João Pessoa");
         pieModel.setLegendPosition("e");
         pieModel.setFill(false);
         pieModel.setShowDataLabels(true);
-        pieModel.setDiameter(300);
     }
     
     private BarChartModel initBarModel() {
@@ -94,7 +122,32 @@ public class ChartBean {
     }
      
    
-    public BarChartModel getBarModel() {
+    
+    public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public String getDate2() {
+		return date2;
+	}
+
+	public void setDate2(String date2) {
+		this.date2 = date2;
+	}
+
+	public String getLabel() {
+		return label;
+	}
+
+	public void setLabel(String label) {
+		this.label = label;
+	}
+
+	public BarChartModel getBarModel() {
         return barModel;
     }
     
