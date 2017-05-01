@@ -73,7 +73,7 @@
           <ul class="sidebar-menu">
             <li class="header">Menu - Relatórios</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="#"><i class="fa fa-bar-chart"></i> <span>Gráfico 1</span></a></li>
+            <li><a href="#"><i class="fa fa-bar-chart"></i> <span>Gráfico 1</span></a></li>
             <li><a href="#"><i class="fa fa-bar-chart"></i> <span>Gráfico 2</span></a></li>
             <li><a href="#"><i class="fa fa-bar-chart"></i> <span>Gráfico 3</span></a></li>
             <li><a href="#"><i class="fa fa-bar-chart"></i> <span>Gráfico 4</span></a></li>
@@ -94,16 +94,17 @@
         <section class="content">
 
           <!-- Conteúdo Aqui -->
-			<!-- <p:chart type="bar" model="#{chartView.barModel}" style="height:300px"/> -->
 			<p:tooltip />
 				<h:form>
 				    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
 				</h:form>
 			<p:separator />
 			
+			<!-- Gráfico 1 -->
 			<h:form>
 				<p:message for="d1" display="d1" />
 				<p:message for="d2" display="d2" />
+				<p:outputLabel value="Faturamento em João Pessoa" /><br/>
 				<p:inputMask id="d1" required="true" value="#{chartView.date}" mask="99/99/9999" />
 				<p:inputMask id="d2" required="true" value="#{chartView.date2}" mask="99/99/9999" style="margin-left:5px;" />
 			    <p:commandButton styleClass="regCommandButton" style="margin-left:5px;" value="Gerar Gráfico" actionListener="#{chartView.list()}" action="#{chartView.getValueDate1()}" update="panel">
@@ -113,6 +114,23 @@
 			    <h:panelGroup id="panel" layout="block" >
 			    	<br/>
 			        <p:chart type="pie" model="#{chartView.pieModel}" style="width:100%; height:100%" rendered="#{chartView.pieModel != null}"/>
+			    </h:panelGroup>
+			</h:form>
+			
+			<!-- Gráfico 1 -->
+			<h:form>
+				<p:message for="d11" display="d11" />
+				<p:message for="d22" display="d22" />
+				<p:outputLabel value="Faturamento em Recife" /><br/>
+				<p:inputMask id="d11" required="true" value="#{chartView2.date}" mask="99/99/9999" />
+				<p:inputMask id="d22" required="true" value="#{chartView2.date2}" mask="99/99/9999" style="margin-left:5px;" />
+			    <p:commandButton styleClass="regCommandButton" style="margin-left:5px;" value="Gerar Gráfico" actionListener="#{chartView2.list()}" action="#{chartView2.getValueDate1()}" update="panel">
+			    	<f:actionListener action="#{chartView2.getValueDate2()}" />
+			    </p:commandButton>
+			    
+			    <h:panelGroup id="panel" layout="block" >
+			    	<br/>
+			        <p:chart type="bar" model="#{chartView2.barChartModel}" style="width:100%; height:100%" rendered="#{chartView2.barChartModel != null}"/>
 			    </h:panelGroup>
 			</h:form>
 

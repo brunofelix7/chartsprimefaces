@@ -23,7 +23,7 @@ public class MyDataService implements MyDataDAO{
 		List<MyData> mList = new ArrayList<>();
 		
 		try{
-			statement = conn.prepareStatement(UserQuerySQL.QUERY_TEST);
+			statement = conn.prepareStatement(UserQuerySQL.QUERY_JP);
 			statement.setString(1, date1);
 			statement.setString(2, date2);
 			result = statement.executeQuery();
@@ -45,6 +45,34 @@ public class MyDataService implements MyDataDAO{
 		}
 		return mList;
 
+	}
+
+	@Override
+	public List<MyData> listFaturamentoRecife(String date1, String date2) {
+		List<MyData> mList = new ArrayList<>();
+		
+		try{
+			statement = conn.prepareStatement(UserQuerySQL.QUERY_RECIFE);
+			statement.setString(1, date1);
+			statement.setString(2, date2);
+			result = statement.executeQuery();
+			
+			while(result.next()){
+				mData = new MyData();
+				
+				mData.setCidade(result.getString("NM_CIDADE"));
+				mData.setData(result.getString("DT_EMISSAO"));
+				mData.setValor(result.getDouble("VALOR"));
+				
+				mList.add(mData);
+			}
+			result.close();
+			statement.close();
+			conn.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return mList;
 	}
 	
 }

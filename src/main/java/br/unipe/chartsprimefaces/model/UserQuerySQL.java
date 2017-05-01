@@ -8,11 +8,18 @@ public class UserQuerySQL {
 	public static final String SELECT_SQL 		= "SELECT nome, id FROM users";
 	public static final String SELECT_ONE_SQL 	= "SELECT * FROM users WHERE id = ?";
 	
-	public static final String QUERY_TEST		= "SELECT NM_CIDADE, DT_EMISSAO, SUM(VL_ITEM) AS VALOR "
-													+ " FROM dados "
-													+ " WHERE NM_CIDADE IN ('JOAO PESSOA') "
-													+ " AND DT_EMISSAO BETWEEN ? AND ?"
-													+ " group by NM_CIDADE, DT_EMISSAO "
-													+ " ORDER BY DT_EMISSAO";
+	public static final String QUERY_JP			= "SELECT NM_CIDADE, DT_EMISSAO, SUM(VL_ITEM) AS VALOR "
+												+ " FROM dados "
+												+ " WHERE NM_CIDADE IN ('JOAO PESSOA') "
+												+ " AND DT_EMISSAO BETWEEN ? AND ?"
+												+ " group by NM_CIDADE, DT_EMISSAO "
+												+ " ORDER BY DT_EMISSAO";
+	
+	public static final String QUERY_RECIFE		= "SELECT NM_CIDADE, DT_EMISSAO, SUM(VL_ITEM) AS VALOR "
+												+ " FROM dados "
+												+ " WHERE NM_CIDADE IN ('RECIFE') "
+												+ " AND DT_EMISSAO BETWEEN ? AND ?"
+												+ " group by NM_CIDADE, DT_EMISSAO "
+												+ " ORDER BY DT_EMISSAO";
 	
 }
