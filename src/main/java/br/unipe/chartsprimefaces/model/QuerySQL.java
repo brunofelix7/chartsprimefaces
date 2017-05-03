@@ -1,12 +1,6 @@
 package br.unipe.chartsprimefaces.model;
 
 public class QuerySQL {
-
-	public static final String INSERT_SQL 		= "INSERT INTO users(nome, login, senha) VALUES(?, ?, ?)";
-	public static final String UPDATE_SQL 		= "UPDATE users SET nome = ?, login = ?, senha = ? WHERE id = ?";
-	public static final String DELETE_SQL 		= "DELETE FROM users WHERE id = ?";
-	public static final String SELECT_SQL 		= "SELECT nome, id FROM users";
-	public static final String SELECT_ONE_SQL 	= "SELECT * FROM users WHERE id = ?";
 	
 	//	Chart 1
 	public static final String QUERY_JP			= "SELECT NM_CIDADE, DT_EMISSAO, SUM(VL_ITEM) AS VALOR "
@@ -24,8 +18,12 @@ public class QuerySQL {
 												+ " group by NM_CIDADE, DT_EMISSAO "
 												+ " ORDER BY DT_EMISSAO";
 	
-	//	Chart 3
-	public static final String QUERY_NOTAS		= "SELECT COUNT(NU_NOTA) AS NOTAS FROM dados WHERE NM_CIDADE = ?";
+	//	Chart 3 e Chart 4
+	public static final String QUERY_NOTAS		= "SELECT COUNT(NU_NOTA) AS NOTAS, NM_CIDADE FROM dados WHERE NM_CIDADE = ?";
 	
+	//	Chart 5
+	public static final String QUERY_CLIENTES	= "SELECT COUNT(NM_CLIENTE) AS CLIENTES, UF_CLIENTE FROM dados WHERE UF_CLIENTE = ?";
 	
+	//	Chart 6
+	public static final String QUERY_TOTAL		= "SELECT SUM(VL_TOT_NOTA) AS TOTAL, DT_EMISSAO FROM dados WHERE DT_EMISSAO = ?";
 }

@@ -86,33 +86,58 @@ public class MyDataService implements MyDataDAO{
 			
 			while(result.next()){
 				mData = new MyData();
-				
+				mData.setCidade(result.getString("NM_CIDADE"));
 				mData.setNotas(result.getInt("NOTAS"));
 				
 				mList.add(mData);
 			}
-			result.close();
+			/*result.close();
 			statement.close();
-			conn.close();
+			conn.close();*/
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
 		return mList;
 	}
-	
+
 	@Override
-	public List<MyData> listNotas2(String cidade) {
+	public List<MyData> listClientes(String uf) {
 		List<MyData> mList = new ArrayList<>();
 		
 		try{
-			statement = conn.prepareStatement(QuerySQL.QUERY_NOTAS);
-			statement.setString(1, cidade);
+			statement = conn.prepareStatement(QuerySQL.QUERY_CLIENTES);
+			statement.setString(1, uf);
 			result = statement.executeQuery();
 			
 			while(result.next()){
 				mData = new MyData();
+				mData.setUf(result.getString("UF_CLIENTE"));
+				mData.setCliente(result.getInt("CLIENTES"));
 				
-				mData.setNotas(result.getInt("NOTAS"));
+				mList.add(mData);
+			}
+			/*result.close();
+			statement.close();
+			conn.close();*/
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return mList;
+	}
+
+	@Override
+	public List<MyData> listTotal(String data) {
+List<MyData> mList = new ArrayList<>();
+		
+		try{
+			statement = conn.prepareStatement(QuerySQL.QUERY_TOTAL);
+			statement.setString(1, data);
+			result = statement.executeQuery();
+			
+			while(result.next()){
+				mData = new MyData();
+				mData.setData(result.getString("DT_EMISSAO"));
+				mData.setValor(result.getDouble("TOTAL"));
 				
 				mList.add(mData);
 			}
@@ -125,5 +150,4 @@ public class MyDataService implements MyDataDAO{
 		return mList;
 	}
 
-	
 }

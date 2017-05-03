@@ -6,18 +6,13 @@ public class MyData {
 	private String cidade;
 	private double valor;
 	private int notas;
+	private int cliente;
+	private String uf;
 	
 	public MyData(){
 		
 	}
 	
-	public MyData(String data, String cidade, double valor) {
-		super();
-		this.data = data;
-		this.cidade = cidade;
-		this.valor = valor;
-	}
-
 	public String getData() {
 		return data;
 	}
@@ -42,6 +37,18 @@ public class MyData {
 	public void setNotas(int notas) {
 		this.notas = notas;
 	}
-	
+	public int getCliente() {
+		return cliente;
+	}
+	public void setCliente(int cliente) {
+		this.cliente = cliente;
+	}
+	public String getUf() {
+		return uf;
+	}
+	public void setUf(String uf) {
+		this.uf = uf;
+	}
+
 
 }

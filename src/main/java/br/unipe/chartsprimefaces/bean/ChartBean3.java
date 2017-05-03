@@ -4,18 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
-
-import org.primefaces.model.chart.Axis;
-import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.BarChartModel;
 import org.primefaces.model.chart.ChartSeries;
-import org.primefaces.model.chart.HorizontalBarChartModel;
-
 import br.unipe.chartsprimefaces.entity.MyData;
 import br.unipe.chartsprimefaces.service.MyDataService;
 
@@ -27,9 +19,6 @@ public class ChartBean3 {
 	private String city;
 	private String label; 
 	private BarChartModel barModel;
-	private HorizontalBarChartModel horizontalBarModel;
-	private ChartSeries chartSeries;
-	private ChartSeries chartSeries2;
 	private List<MyData> mList;
 	private List<MyData> mList2;
 	private Map<String, String> cidades;
@@ -61,13 +50,14 @@ public class ChartBean3 {
     	mList2 = new ArrayList<>();
     	myDataService = new MyDataService();
     	mList = myDataService.listNotas(getValueCidade1());
-    	mList2 = myDataService.listNotas2(getValueCidade2());
+    	mList2 = myDataService.listNotas(getValueCidade2());
     	createChartModel(mList, mList2);
     }
     
     private void createChartModel(List<MyData> cidade1, List<MyData> cidade2){
     	ChartSeries cs1 = new ChartSeries();
     	ChartSeries cs2 = new ChartSeries();
+    	
     	for(MyData c1 : cidade1){
     		cs1.set(c1.getCidade(), c1.getNotas());
     	}
@@ -76,23 +66,16 @@ public class ChartBean3 {
     		cs2.set(c2.getCidade(), c2.getNotas());
     	}
     	
-    	cs1.setLabel("Total");
-    	cs2.setLabel("Total");
+    	cs1.setLabel(getValueCidade1());
+    	cs2.setLabel(getValueCidade2());
     	
-    	horizontalBarModel = new HorizontalBarChartModel();
-    	horizontalBarModel.addSeries(cs1);
-    	horizontalBarModel.addSeries(cs2);
-    	horizontalBarModel.setTitle("Total de Notas Fiscais");
-    	horizontalBarModel.setLegendPosition("e");
-        horizontalBarModel.setStacked(true);
+    	barModel = new BarChartModel();
+    	barModel.addSeries(cs1);
+    	barModel.addSeries(cs2);
+    	barModel.setTitle("Total de Notas Fiscais em " + getValueCidade1() + " e " + getValueCidade2());
+    	barModel.setLegendPosition("e");
+    	barModel.setStacked(true);
     	
-    	Axis xAxis = horizontalBarModel.getAxis(AxisType.X);
-        xAxis.setLabel("Births");
-        xAxis.setMin(0);
-        xAxis.setMax(200);
-         
-        Axis yAxis = horizontalBarModel.getAxis(AxisType.Y);
-        yAxis.setLabel("Gender");  
     }
     
     
@@ -120,12 +103,6 @@ public class ChartBean3 {
 	}
 	public void setLabel(String label) {
 		this.label = label;
-	}
-	public HorizontalBarChartModel getHorizontalBarModel() {
-		return horizontalBarModel;
-	}
-	public void setHorizontalBarModel(HorizontalBarChartModel horizontalBarModel) {
-		this.horizontalBarModel = horizontalBarModel;
 	}
 	public BarChartModel getBarModel() {
 		return barModel;

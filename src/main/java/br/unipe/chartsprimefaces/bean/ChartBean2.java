@@ -57,7 +57,7 @@ public class ChartBean2 {
     	
     	barChartModel = new BarChartModel();
     	barChartModel.addSeries(chartSeries);
-    	barChartModel.setTitle("Total de Faturamento em Recife");
+    	barChartModel.setTitle("Total de Faturamento em Recife entre " + getValueDate1() + " e " + getValueDate2());
     	barChartModel.setLegendPosition("e");
     }
     

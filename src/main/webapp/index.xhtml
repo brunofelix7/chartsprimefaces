@@ -23,7 +23,7 @@
       <header class="main-header">
 
         <!-- Logo -->
-        <a href="#" class="logo">
+        <a href="http://localhost:8080/chartsprimefaces/" class="logo">
           <span class="logo-lg"><b>Primefaces Charts</b></span>
         </a>
 
@@ -86,7 +86,7 @@
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <section class="content-header">
-          <h1>Total de Faturamento - 2012<br/><small>Informe o período desejado</small>
+          <h1>Análise de Dados - 2012<br/><small>Informe os parâmetros desejados</small>
           </h1>
         </section>
 
@@ -136,7 +136,7 @@
 			
 			<!-- Gráfico 3 -->
 			<h:form>
-				<p:outputLabel value="Notas Fiscais" /><br/>
+				<p:outputLabel value="Notas Fiscais entre duas Cidades" /><br/>
 				<h:panelGrid columns="5" style="margin-bottom:10px" cellpadding="5">
 					<p:selectOneMenu effect="fold" id="cid1" value="#{chartView3.cidade1}" style="width:100px">
 		                <f:selectItem itemLabel="--Cidade--" itemValue="" />
@@ -153,7 +153,59 @@
 			    
 			    <h:panelGroup id="panel" layout="block" >
 			    	<br/>
-			        <p:chart type="bar" model="#{chartView3.horizontalBarModel}" style="width:100%; height:100%" rendered="#{chartView3.horizontalBarModel != null}"/>
+			        <p:chart type="bar" model="#{chartView3.barModel}" style="width:100%; height:100%" rendered="#{chartView3.barModel != null}"/>
+			    </h:panelGroup>
+			</h:form>
+			
+			<!-- Gráfico 5 -->
+			<h:form>
+				<p:outputLabel value="Quantidade de Clientes" /><br/>
+				<h:panelGrid columns="5" style="margin-bottom:10px" cellpadding="5">
+					<p:selectOneMenu id="cc1" value="#{chartView5.uf1}" style="width:100px;">
+			                <f:selectItem itemLabel="--UF--" itemValue=""  />
+			                <f:selectItems value="#{chartView5.estados}" />
+		            </p:selectOneMenu>
+		            <p:selectOneMenu id="cc2" value="#{chartView5.uf2}" style="width:100px; margin-left:5px;">
+			                <f:selectItem itemLabel="--UF--" itemValue=""  />
+			                <f:selectItems value="#{chartView5.estados}" />
+		            </p:selectOneMenu>
+				    <p:commandButton styleClass="regCommandButton" style="margin-left:5px;" value="Gerar Gráfico" actionListener="#{chartView5.list()}" action="#{chartView5.getValueEstado1()}" update="panel">
+				    	<f:actionListener action="#{chartView5.getValueEstado2()}" />
+			    	</p:commandButton>
+			    </h:panelGrid>
+			    
+			    <h:panelGroup id="panel" layout="block" >
+			    	<br/>
+			        <p:chart type="bar" model="#{chartView5.barChartModel}" style="width:100%; height:100%" rendered="#{chartView5.barChartModel != null}"/>
+			    </h:panelGroup>
+			</h:form>
+			
+			<!-- Gráfico 6 -->
+			<h:form>
+				<p:outputLabel value="Valor Total" /><br/>
+				<p:inputMask id="tot" value="#{chartView6.data}" mask="99/99/9999" />
+			    <p:commandButton styleClass="regCommandButton" style="margin-left:5px;" value="Gerar Gráfico" actionListener="#{chartView6.list()}" action="#{chartView6.getValueData()}" update="panel"/>
+			    
+			    <h:panelGroup id="panel" layout="block" >
+			    	<br/>
+			        <p:chart type="pie" model="#{chartView6.pieModel}" style="width:100%; height:100%" rendered="#{chartView6.pieModel != null}"/>
+			    </h:panelGroup>
+			</h:form>
+			
+			<!-- Gráfico 4 -->
+			<h:form>
+				<p:outputLabel value="Notas Fiscais por Cidade" /><br/>
+				<h:panelGrid columns="5" style="margin-bottom:10px" cellpadding="5">
+					<p:selectOneMenu id="cid2" value="#{chartView4.city}" style="width:100px; margin-left:5px;">
+			                <f:selectItem itemLabel="--Cidade--" itemValue=""  />
+			                <f:selectItems value="#{chartView4.cidades}" />
+		            </p:selectOneMenu>
+				    <p:commandButton styleClass="regCommandButton" style="margin-left:5px;" value="Gerar Gráfico" actionListener="#{chartView4.list()}" action="#{chartView4.getValueCity()}" update="panel"/>
+			    </h:panelGrid>
+			    
+			    <h:panelGroup id="panel" layout="block" >
+			    	<br/>
+			        <p:chart type="pie" model="#{chartView4.pieModel}" style="width:100%; height:100%" rendered="#{chartView4.pieModel != null}"/>
 			    </h:panelGroup>
 			</h:form>
 

@@ -4,19 +4,16 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
-
 import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.BarChartModel;
 import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.LineChartModel;
 import org.primefaces.model.chart.PieChartModel;
-
 import br.unipe.chartsprimefaces.entity.MyData;
 import br.unipe.chartsprimefaces.service.MyDataService;
 
@@ -72,7 +69,7 @@ public class ChartBean {
     		pieModel.set(m.getData(), m.getValor());
     	}
     	
-    	pieModel.setTitle("Total de Faturamento em João Pessoa");
+    	pieModel.setTitle("Total de Faturamento em João Pessoa entre " + getValueDate1() + " e " + getValueDate2());
         pieModel.setShowDataLabels(true);
         pieModel.setLegendPosition("w");
         pieModel.setFill(true);
