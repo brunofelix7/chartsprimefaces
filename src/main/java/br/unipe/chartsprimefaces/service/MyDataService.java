@@ -9,7 +9,7 @@ import java.util.List;
 import br.unipe.chartsprimefaces.dao.ConnectionFactory;
 import br.unipe.chartsprimefaces.dao.MyDataDAO;
 import br.unipe.chartsprimefaces.entity.MyData;
-import br.unipe.chartsprimefaces.model.UserQuerySQL;
+import br.unipe.chartsprimefaces.model.QuerySQL;
 
 public class MyDataService implements MyDataDAO{
 
@@ -23,7 +23,7 @@ public class MyDataService implements MyDataDAO{
 		List<MyData> mList = new ArrayList<>();
 		
 		try{
-			statement = conn.prepareStatement(UserQuerySQL.QUERY_JP);
+			statement = conn.prepareStatement(QuerySQL.QUERY_JP);
 			statement.setString(1, date1);
 			statement.setString(2, date2);
 			result = statement.executeQuery();
@@ -52,7 +52,7 @@ public class MyDataService implements MyDataDAO{
 		List<MyData> mList = new ArrayList<>();
 		
 		try{
-			statement = conn.prepareStatement(UserQuerySQL.QUERY_RECIFE);
+			statement = conn.prepareStatement(QuerySQL.QUERY_RECIFE);
 			statement.setString(1, date1);
 			statement.setString(2, date2);
 			result = statement.executeQuery();
@@ -74,5 +74,56 @@ public class MyDataService implements MyDataDAO{
 		}
 		return mList;
 	}
+
+	@Override
+	public List<MyData> listNotas(String cidade) {
+		List<MyData> mList = new ArrayList<>();
+		
+		try{
+			statement = conn.prepareStatement(QuerySQL.QUERY_NOTAS);
+			statement.setString(1, cidade);
+			result = statement.executeQuery();
+			
+			while(result.next()){
+				mData = new MyData();
+				
+				mData.setNotas(result.getInt("NOTAS"));
+				
+				mList.add(mData);
+			}
+			result.close();
+			statement.close();
+			conn.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return mList;
+	}
+	
+	@Override
+	public List<MyData> listNotas2(String cidade) {
+		List<MyData> mList = new ArrayList<>();
+		
+		try{
+			statement = conn.prepareStatement(QuerySQL.QUERY_NOTAS);
+			statement.setString(1, cidade);
+			result = statement.executeQuery();
+			
+			while(result.next()){
+				mData = new MyData();
+				
+				mData.setNotas(result.getInt("NOTAS"));
+				
+				mList.add(mData);
+			}
+			result.close();
+			statement.close();
+			conn.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return mList;
+	}
+
 	
 }

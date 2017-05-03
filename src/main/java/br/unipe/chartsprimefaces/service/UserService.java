@@ -10,7 +10,7 @@ import java.util.List;
 import br.unipe.chartsprimefaces.dao.ConnectionFactory;
 import br.unipe.chartsprimefaces.dao.UserDAO;
 import br.unipe.chartsprimefaces.entity.User;
-import br.unipe.chartsprimefaces.model.UserQuerySQL;
+import br.unipe.chartsprimefaces.model.QuerySQL;
 
 public class UserService implements UserDAO{
 
@@ -19,7 +19,7 @@ public class UserService implements UserDAO{
 	@Override
 	public void cadastrar(User usuario){
 		try {
-			PreparedStatement statement = conn.prepareStatement(UserQuerySQL.INSERT_SQL);
+			PreparedStatement statement = conn.prepareStatement(QuerySQL.INSERT_SQL);
 			statement.setString(1, usuario.getNome());
 			statement.setString(2, usuario.getLogin());
 			statement.setString(3, usuario.getSenha());
@@ -33,7 +33,7 @@ public class UserService implements UserDAO{
 	@Override
 	public void atualizar(User usuario) {
 		//	Faz o close pra mim
-		try(PreparedStatement statement = conn.prepareStatement(UserQuerySQL.UPDATE_SQL);){
+		try(PreparedStatement statement = conn.prepareStatement(QuerySQL.UPDATE_SQL);){
 			statement.setString(1, usuario.getNome());
 			statement.setString(2, usuario.getLogin());
 			statement.setString(3, usuario.getSenha());
@@ -47,7 +47,7 @@ public class UserService implements UserDAO{
 
 	public void remover(User usuario) {
 		//	Faz o close pra mim
-		try(PreparedStatement statement = conn.prepareStatement(UserQuerySQL.DELETE_SQL)){
+		try(PreparedStatement statement = conn.prepareStatement(QuerySQL.DELETE_SQL)){
 			statement.setInt(1, usuario.getId());
 			statement.execute();
 			//	statement.close();
@@ -67,7 +67,7 @@ public class UserService implements UserDAO{
 	
 	@Override
 	public User buscarPorId(Integer id){
-		try(PreparedStatement statement = conn.prepareStatement(UserQuerySQL.SELECT_ONE_SQL)){
+		try(PreparedStatement statement = conn.prepareStatement(QuerySQL.SELECT_ONE_SQL)){
 			statement.setInt(1, id);
 			
 			//	Traz o retorno da consulto em ResultSet
@@ -98,7 +98,7 @@ public class UserService implements UserDAO{
 		//	Lista de usuários
 		List<User> usuarios = new ArrayList<User>();
 		
-		try(PreparedStatement statement = conn.prepareStatement(UserQuerySQL.SELECT_SQL)){
+		try(PreparedStatement statement = conn.prepareStatement(QuerySQL.SELECT_SQL)){
 			
 			//	Traz o retorno da consulto em ResultSet
 			ResultSet result = statement.executeQuery();

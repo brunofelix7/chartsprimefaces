@@ -117,7 +117,7 @@
 			    </h:panelGroup>
 			</h:form>
 			
-			<!-- Gráfico 1 -->
+			<!-- Gráfico 2 -->
 			<h:form>
 				<p:message for="d11" display="d11" />
 				<p:message for="d22" display="d22" />
@@ -131,6 +131,29 @@
 			    <h:panelGroup id="panel" layout="block" >
 			    	<br/>
 			        <p:chart type="bar" model="#{chartView2.barChartModel}" style="width:100%; height:100%" rendered="#{chartView2.barChartModel != null}"/>
+			    </h:panelGroup>
+			</h:form>
+			
+			<!-- Gráfico 3 -->
+			<h:form>
+				<p:outputLabel value="Notas Fiscais" /><br/>
+				<h:panelGrid columns="5" style="margin-bottom:10px" cellpadding="5">
+					<p:selectOneMenu effect="fold" id="cid1" value="#{chartView3.cidade1}" style="width:100px">
+		                <f:selectItem itemLabel="--Cidade--" itemValue="" />
+		                <f:selectItems value="#{chartView3.cidades}" />
+	            	</p:selectOneMenu>
+	            	<p:selectOneMenu effect="fold" id="cid2" value="#{chartView3.cidade2}" style="width:100px; margin-left:5px;">
+		                <f:selectItem itemLabel="--Cidade--" itemValue=""  />
+		                <f:selectItems value="#{chartView3.cidades}" />
+	            	</p:selectOneMenu>
+				    <p:commandButton styleClass="regCommandButton" style="margin-left:5px;" value="Gerar Gráfico" actionListener="#{chartView3.list()}" action="#{chartView3.getValueCidade1()}" update="panel">
+				    	<f:actionListener action="#{chartView3.getValueCidade2()}" />
+			    	</p:commandButton>
+				</h:panelGrid>
+			    
+			    <h:panelGroup id="panel" layout="block" >
+			    	<br/>
+			        <p:chart type="bar" model="#{chartView3.horizontalBarModel}" style="width:100%; height:100%" rendered="#{chartView3.horizontalBarModel != null}"/>
 			    </h:panelGroup>
 			</h:form>
 

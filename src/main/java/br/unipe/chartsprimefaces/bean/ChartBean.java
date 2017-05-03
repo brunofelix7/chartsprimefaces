@@ -73,9 +73,9 @@ public class ChartBean {
     	}
     	
     	pieModel.setTitle("Total de Faturamento em João Pessoa");
-        pieModel.setLegendPosition("e");
-        pieModel.setFill(false);
         pieModel.setShowDataLabels(true);
+        pieModel.setLegendPosition("w");
+        pieModel.setFill(true);
     }
     
     private BarChartModel initBarModel() {

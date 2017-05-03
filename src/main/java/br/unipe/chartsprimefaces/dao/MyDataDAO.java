@@ -13,4 +13,9 @@ public interface MyDataDAO {
 	
 	List<MyData> listFaturamentoRecife(String date1, String date2);
 	
+	List<MyData> listNotas(String cidade);
+	
+	List<MyData> listNotas2(String cidade);
+
+	
 }

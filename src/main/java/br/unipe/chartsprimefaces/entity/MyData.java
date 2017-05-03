@@ -5,6 +5,7 @@ public class MyData {
 	private String data;
 	private String cidade;
 	private double valor;
+	private int notas;
 	
 	public MyData(){
 		
@@ -35,5 +36,12 @@ public class MyData {
 	public void setValor(double valor) {
 		this.valor = valor;
 	}
+	public int getNotas() {
+		return notas;
+	}
+	public void setNotas(int notas) {
+		this.notas = notas;
+	}
+	
 
 }
